@@ -1,0 +1,94 @@
+<svg versions='1.1' xmlns="http://www.w3.org/2000/svg" xmlns:xlink='http://www.w3.org/1999/xlink' style='display:none'>
+  <symbol id='X' viewBox='0 0 76 76'>
+    <style>
+      .x0{fill:none;stroke:#000000;stroke-width:24;stroke-miterlimit:10;}
+    </style>
+    <path id="XMLID_1_" class="x0" d="M11.1 11.1l53.8 53.8"/>
+    <path id="XMLID_2_" class="x0" d="M64.9 11.1L11.1 64.9"/>
+  </symbol>
+  <symbol id='O' viewBox='0 0 76 76'>
+     <style>
+      .o0{fill:#FFFFFF;stroke:#B30000;stroke-width:20;stroke-miterlimit:10;}
+    </style>
+    <circle id="XMLID_1_" class="o0" cx="38" cy="38" r="25"/>
+  </symbol>
+</svg>
+<div class='center'>
+  <div id='ttt__title' class='ttt__title'>
+    tic-t<span class='ttt__title--a'>a</span>c-t<span class='ttt__title--o'>o</span>e
+  </div>
+  <div id='menu' class='menu'>    
+    <div class='weapon'>
+      <div class='weapon__title'>
+        Choose your weapon:
+      </div>
+      <div id='weapon--x' class='weapon--x'>
+        <svg viewBox='0 0 76 76'>
+          <use xlink:href='#X'></use>
+        </svg>
+      </div>
+      <div id='weapon--o' class='weapon--o'>
+        <svg viewBox='0 0 76 76'>
+          <use xlink:href='#O'></use>
+        </svg>
+      </div>
+    </div>
+    <div class='difficulty'>
+      <div class='difficulty__title'>
+        Choose your difficulty:
+      </div>
+      <div id='difficulty--easy' class='difficulty--easy'>
+        Easy
+      </div>
+      <div id='difficulty--medium' class='difficulty--medium'>
+        Medium
+      </div>
+      <div id='difficulty--impossible' class='difficulty--impossible'>
+        Impossible
+      </div>
+    </div>
+  </div>
+  <div id='ttt__board' class='ttt__board is-hidden'>
+    <div id='s1' class='s s1'></div>
+    <div id='s2' class='s s2'></div>
+    <div id='s3' class='s s3'></div>
+    <div id='s4' class='s s4'></div>
+    <div id='s5' class='s s5'></div>
+    <div id='s6' class='s s6'></div>
+    <div id='s7' class='s s7'></div>
+    <div id='s8' class='s s8'></div>
+    <div id='s9' class='s s9'></div>
+    
+    <!-- can't use symbol-xlink if you plan to interact with the svg paths, because it crosses a shadow DOM boundary -->
+    <svg id='ttt__grid' viewBox='0 0 300 300'>
+      <style>
+        .st0{fill:none;stroke:#000000;stroke-width:24;stroke-miterlimit:10;}
+      </style>
+        <path class="st0" d="M0 100h300"/>
+        <path class="st0" d="M0 200h300"/>
+        <path class="st0" d="M100 0v300"/>
+        <path class="st0" d="M200 0v300"/>   
+    </svg>
+    
+  </div>
+  <div id='outcome' class='outcome is-hidden'>
+    <div id='outcome--win' class='outcome--win is-hidden'>
+      You win!<br>
+      <div id='outcome--restartW' class='outcome--restart'>
+        Play Again?
+      </div>
+    </div>
+    <div id='outcome--loss' class='outcome--loss is-hidden'>
+      AI wins!<br>
+      <div id='outcome--restartL' class='outcome--restart'>
+        Play Again?
+      </div>
+    </div>
+    <div id='outcome--draw' class='outcome--draw is-hidden'>
+      Draw!<br>
+      <div id='outcome--restartD' class='outcome--restart'>
+        Play Again?
+      </div>
+    </div>
+  </div>
+</div>

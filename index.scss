@@ -1,0 +1,269 @@
+@import url('//fonts.googleapis.com/css?family=Montserrat|Audiowide');
+
+
+
+*, :before, :after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Montserrat;
+  user-select: none;
+}
+
+// For the div to handle the click event
+svg {
+  pointer-events: none;
+}
+
+.center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+}
+
+.menu {
+  margin-top: -50%;
+  margin-left: -50%;
+  width: 400px;
+  height: auto;
+  text-align: center;
+}
+
+.weapon {
+  width: 100%;
+  height: 100%; 
+  margin-bottom: 0.5rem;
+  
+  &__title {
+    font-size: 1.5rem;
+  }
+  
+  @mixin m-weapon($m-weap) {
+    width: 10%;
+    height: 10%;
+    display: inline-block;
+    cursor: pointer;
+    &:hover {
+      background: #69e3ff;
+    }
+  }
+  
+  &--x {
+    @include m-weapon(x);
+  }
+  &--o {
+    @include m-weapon(o);
+  }
+}
+
+.difficulty {
+  &__title {
+    font-size: 1.5rem;
+  }
+  @mixin m-difficulty($m-diff) {
+    cursor: pointer;
+    &:hover {
+      background: #69e3ff;
+    }
+  }
+  &--easy {
+    @include m-difficulty(easy);
+  }
+  &--medium {
+     @include m-difficulty(medium);
+  }
+   &--impossible {
+   //  text-decoration: line-through;
+     @include m-difficulty(impossible);
+  }
+}
+
+.ttt {
+  &__title {
+    color: #8d8c8e;
+    font-size: 4rem;
+    font-weight: bold;
+    margin-top: -40%;
+    margin-left: -50%;
+    width: 400px;
+    height: auto;
+    text-align: center;
+    margin-bottom: 55%;
+    
+    &:first-letter { // t
+      color: transparentize(#000, 0.3);
+      font-family: Audiowide;
+    }
+    
+    &--a {
+      color: #69e3ff; //transparentize(cyan, 0.5); 
+    }
+    
+    &--o {
+      color: transparentize(#b30000, 0.3);
+    }
+  }
+  
+  &__board {
+    margin-top: -50%;
+    margin-left: -50%;
+    height: 300px;
+    width: 300px;
+  }
+}
+
+// the 9 squares for placing the X and O.
+.s {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 76px;
+  height: 76px;
+  cursor: pointer;
+  
+  @mixin XOposition($row, $col) {
+    @if $row == 1 {
+      top: -150px + 6px;
+    }
+    @if $row == 2 {
+      top: -38px;
+    }
+    @if $row == 3 {
+      top: 68px;
+    }
+
+    @if $col == 1 {
+      left: -150px + 6px;
+    }
+    @if $col == 2 {
+      left: -38px;
+    }
+    @if $col == 3 {
+      left: 68px;
+    }
+  }
+
+  @for $i from 1 through 9 {
+    &#{$i} {
+      &:hover {
+        opacity: 0.7;
+        background: #69e3ff;
+      }
+      @if $i <= 3 {
+        @include XOposition(1, $i);
+      }
+      @else {
+        @if $i <= 6 {
+          @include XOposition(2, $i - 3);
+        }
+        @else {
+          @include XOposition(3, $i - 6);
+        }
+      }
+    }
+  }
+}
+
+.highlight {
+  background: #69e3ff;
+}
+
+.outcome {
+  font-size: 3rem;
+  color: white;
+  text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  height: 300px;
+  width: 300px;
+  margin-left: -150px;
+  margin-top: -150px;
+
+  &--win {
+  //  position: absolute;
+//    top: 50%;
+//    margin-top: -20px;
+    padding: 40% 0;
+    animation: 2s winAnimation;
+    animation-fill-mode: forwards;
+    @keyframes winAnimation {
+      0% {
+        margin-top: -80%;
+        opacity: 0;
+      }
+      
+      50% {
+        margin-top: -30px;
+        background: rgba(255, 0, 0, 0.5);
+        opacity: 1;
+      }
+      
+      100% {
+        margin-top: -30px;
+        background: rgba(0, 0, 255, 0.5);
+      }
+    }
+  }
+  &--loss {
+    padding: 40% 0;
+    animation: 2s lossAnimation;
+    animation-fill-mode: forwards;
+    @keyframes lossAnimation {
+      0% {
+        margin-top: -80%;
+        opacity: 0;
+      }
+      
+      50% {
+      //  top: -50%;
+        margin-top: -30px;
+        background: rgba(0, 0, 255, 0.5);
+        opacity: 1;
+      }
+      
+      100% {
+    //    top: -50%;
+        margin-top: -30px;
+        background: rgba(255, 0, 0, 0.5);
+      }
+    }
+  }
+  
+   &--draw {
+    padding: 40% 0;
+    animation: 2s drawAnimation;
+    animation-fill-mode: forwards;
+    @keyframes drawAnimation {
+      0% {
+        margin-top: -80%;
+        opacity: 0;
+      }
+      
+      50% {
+        margin-top: -30px;
+        background: rgba(0, 0, 0, 0.7);
+        opacity: 1;
+      }
+      
+      100% {
+        margin-top: -30px;
+        background: rgba(0, 0, 0, 0.4);
+      }
+    }
+  }
+  
+  &--restart {
+    display: inline-block;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    &:hover {
+      color: #69e3ff;
+    }
+  }
+}
+
+.is-hidden {
+  display: none;
+}
